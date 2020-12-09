@@ -11,12 +11,21 @@ int main() {
   size_t readchar;
 
   argv = malloc(65 * sizeof(char *));
+  if (!argv) {
+    fprintf(stderr, "Cannot allocate argv\n");
+    exit(EXIT_FAILURE);
+  }
+  size_t argv_size;
 
   do {
     fprintf(stderr, "> ");
 
     size_t bytesize = 10;
     input = malloc(bytesize * sizeof(char *));
+    if (!input) {
+      fprintf(stderr, "Cannot allocate input\n");
+      exit(EXIT_FAILURE);
+    }
     readchar = getline(&input, &bytesize, stdin);
 
     if (readchar == -1) {
@@ -30,8 +39,18 @@ int main() {
     int i = 0;
     while (token != NULL) {
       argv[i] = token;
+      argv_size++;
       token = strtok(NULL, " ");
       i++;
+
+      if (argv_size = readchar) {
+        argv_size += argv_size;
+        argv = realloc(argv, argv_size * sizeof(char *));
+        if (!argv) {
+          fprintf(stderr, "Cannot reallocate\n");
+          exit(EXIT_FAILURE);
+        }
+      }
     }
 
 
