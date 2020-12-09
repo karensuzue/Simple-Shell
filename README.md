@@ -1,2 +1,2 @@
 # Simple Shell
-A simple shell written in C. 
+A simple UNIX shell written in C. 
