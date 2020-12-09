@@ -10,6 +10,8 @@ int main() {
   char **argv;
   size_t readchar;
 
+  argv = malloc(65 * sizeof(char *));
+
   do {
     fprintf(stderr, "> ");
 
@@ -18,13 +20,12 @@ int main() {
     readchar = getline(&input, &bytesize, stdin);
 
     if (readchar == -1) {
-      exit(EXIT_SUCCESS);
+      exit(EXIT_FAILURE);
     }
 
     char *newline_ptr = strchr(input, '\n');
     *newline_ptr = '\0';
 
-    argv = malloc(65 * sizeof(char *));
     token = strtok(input, " ");
     int i = 0;
     while (token != NULL) {
@@ -48,6 +49,7 @@ int main() {
       waitpid(pid, &status, 0);
       fprintf(stderr, "Command exited with status %d\n", WEXITSTATUS(status));
     }
+
 
   } while (readchar != -1);
 
